@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import sys
 import os
 import yaml
@@ -11,9 +13,9 @@ def parseCliArguments() -> (str, str):
     SUBCOMMAND_INDEX = 2
 
     programName = sys.argv[PROGRAM_INDEX]
-    subcommands = sys.argv[SUBCOMMAND_INDEX:]
+    subCommands = sys.argv[SUBCOMMAND_INDEX:]
 
-    return (programName, subcommands)
+    return (programName, subCommands)
 
 def readConfig():
     dirname = os.path.dirname(__file__) or '.'
@@ -29,12 +31,12 @@ def buildCommand(programName: str, subCommands: str):
 
     rootPath = config['rootPath']
     program = config['programs'][programName]
-    subCommands = " ".join(subCommands)
+    formattedSubCommands = " ".join(subCommands)
 
-    return f"{program['runtime']} {rootPath}{program['path']} {subcommands}"
+    return f"{program['runtime']} {rootPath}{program['path']} {formattedSubCommands}"
 
 if __name__ == '__main__':
-    (programName, subcommands) = parseCliArguments()
-    command = buildCommand(programName, subcommands)
-
+    (programName, subCommands) = parseCliArguments()
+    command = buildCommand(programName, subCommands)
+    
     os.system(command)
