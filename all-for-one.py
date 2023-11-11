@@ -18,8 +18,12 @@ def parseCliArguments() -> (str, str):
     return (programName, subCommands)
 
 def readConfig():
-    dirname = os.path.dirname(__file__) or '.'
-    with open(dirname + '/programs.yml', 'r') as file:
+    configPath = os.getenv("ALL_FOR_ONE_PATH")
+    
+    if not configPath:
+        sys.exit('`ALL_FOR_ONE_PATH` must be configured.')
+        
+    with open(configPath, 'r') as file:
         config = yaml.safe_load(file)
     return config
     
