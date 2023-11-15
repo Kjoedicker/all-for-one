@@ -4,10 +4,20 @@ import sys
 import os
 import yaml
 import os.path
+from functools import reduce
+
+def displayProgramOptions():
+    config = readConfig()       
+    configuredPrograms = reduce(
+        lambda programs, programName: programs + f"\n - {programName}", 
+        config['programs'],
+        ""
+    )
+    sys.exit("Program options: " + configuredPrograms)
 
 def parseCliArguments() -> (str, str):
     if (len(sys.argv) < 2):
-        sys.exit('A program must be provided.')
+        displayProgramOptions()
 
     PROGRAM_INDEX = 1
     SUBCOMMAND_INDEX = 2
