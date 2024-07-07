@@ -43,7 +43,7 @@ npyscreen==4.10.5
 ordered-set==4.1.0
 packaging==23.2
 pacman_mirrors==4.24.0
-pillow==10.2.0
+pillow==10.3.0
 platformdirs==4.1.0
 ply==3.11
 psutil==5.9.8
